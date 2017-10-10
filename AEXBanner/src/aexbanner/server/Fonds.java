@@ -11,7 +11,7 @@ import Interface.IFonds;
  *
  * @author Sibe
  */
-class Fonds implements IFonds {
+class Fonds implements IFonds  {
 
     String naam;
     double koers;

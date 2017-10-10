@@ -5,6 +5,7 @@
  */
 package aexbanner.client;
 
+import java.rmi.RemoteException;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.scene.Scene;
@@ -32,7 +33,7 @@ public class AEXBanner extends Application {
     private AnimationTimer animationTimer;
 
     @Override
-    public void start(Stage primaryStage) {
+    public void start(Stage primaryStage){
 
         controller = new BannerController(this);
 
@@ -85,7 +86,11 @@ public class AEXBanner extends Application {
         text.setText(koersen);
         textLength = text.getLayoutBounds().getWidth();
     }
-
+    
+    public static void main(String[] args){
+        launch(args);
+    }
+    
     @Override
     public void stop() {
         animationTimer.stop();

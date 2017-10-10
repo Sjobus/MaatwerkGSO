@@ -5,6 +5,7 @@
  */
 package aexbanner.server;
 
+import Interface.IEffectenbeurs;
 import java.net.InetAddress;
 import java.net.NetworkInterface;
 import java.net.SocketException;
@@ -15,6 +16,7 @@ import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import static javafx.application.Application.launch;
 
 /**
  *
@@ -26,11 +28,11 @@ public class AEXServer {
     private static final int portNumber = 1099;
     
     // de binding naam voor de effectenbeurs.
-    private static final String bindingName = "Aex Banner Server";
+    private static final String bindingName = "AexBanner";
     
     // referentie naar de registry en de beurs
     private Registry registry = null;
-    private MockEffectenbeurs beurs = null;
+    private IEffectenbeurs beurs = null;
     
     public AEXServer(){
         
@@ -70,38 +72,7 @@ public class AEXServer {
         
     }
     
-    // Print IP addresses and network interfaces
-    private static void printIPAddresses() {
-        try {
-            InetAddress localhost = InetAddress.getLocalHost();
-            System.out.println("Server: IP Address: " + localhost.getHostAddress());
-            // Just in case this host has multiple IP addresses....
-            InetAddress[] allMyIps = InetAddress.getAllByName(localhost.getCanonicalHostName());
-            if (allMyIps != null && allMyIps.length > 1) {
-                System.out.println("Server: Full list of IP addresses:");
-                for (InetAddress allMyIp : allMyIps) {
-                    System.out.println("    " + allMyIp);
-                }
-            }
-        } catch (UnknownHostException ex) {
-            System.out.println("Server: Cannot get IP address of local host");
-            System.out.println("Server: UnknownHostException: " + ex.getMessage());
-        }
 
-        try {
-            System.out.println("Server: Full list of network interfaces:");
-            for (Enumeration<NetworkInterface> en = NetworkInterface.getNetworkInterfaces(); en.hasMoreElements();) {
-                NetworkInterface intf = en.nextElement();
-                System.out.println("    " + intf.getName() + " " + intf.getDisplayName());
-                for (Enumeration<InetAddress> enumIpAddr = intf.getInetAddresses(); enumIpAddr.hasMoreElements();) {
-                    System.out.println("        " + enumIpAddr.nextElement().toString());
-                }
-            }
-        } catch (SocketException ex) {
-            System.out.println("Server: Cannot retrieve network interface list");
-            System.out.println("Server: UnknownHostException: " + ex.getMessage());
-        }
-    }
 
     /**
      * @param args the command line arguments
@@ -110,7 +81,7 @@ public class AEXServer {
         
         System.out.println("Server met gebruik van Registry start");
         
-        printIPAddresses();
+        //printIPAddresses();
         
         AEXServer server = new AEXServer();
     }

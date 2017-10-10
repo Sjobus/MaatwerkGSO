@@ -5,11 +5,13 @@
  */
 package Interface;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Sibe
  */
-public interface IFonds {
+public interface IFonds extends Serializable {
     
    String getNaam();
    double getKoers();
