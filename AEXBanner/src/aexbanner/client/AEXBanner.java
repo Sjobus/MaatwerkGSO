@@ -33,7 +33,7 @@ public class AEXBanner extends Application {
     private AnimationTimer animationTimer;
 
     @Override
-    public void start(Stage primaryStage){
+    public void start(Stage primaryStage) throws RemoteException{
 
         controller = new BannerController(this);
 
